@@ -39,11 +39,12 @@ formatCard = (card) ->
 	attachment['text'] = ''
 
 	typeline = ''
-	if card.subtype? and card.subtype != ''
-		typeline += "*#{card.type}*: #{card.subtype}"
+	if card.traits? and card.traits != ''
+		typeline += "*#{card.type_name}*: #{card.traits}"
 	else
-		typeline += "*#{card.type}*"
+		typeline += "*#{card.type_name}*"
 
+###
 	switch card.type_code
 		when 'agenda'
 			typeline += " _(#{card.advancementcost}:rez:, #{card.agendapoints}:agenda:)_"
@@ -63,26 +64,13 @@ formatCard = (card) ->
 				typeline += " _(#{card.cost}:credit:, #{card.memoryunits}:mu:, #{card.strength} strength)_"
 			else
 				typeline += " _(#{card.cost}:credit:, #{card.memoryunits}:mu:)_"
+###
 
 	attachment['text'] += typeline + "\n\n"
 	if card.text?
 		attachment['text'] += emojifyNRDBText card.text
 	else
 		attachment['text'] += ''
-
-	faction = FACTIONS[card.faction_code]
-
-	if faction?
-		if card.factioncost?
-			influencepips = ""
-			i = card.factioncost
-			while i--
-				influencepips += '●'
-			attachment['author_name'] = "#{card.setname} / #{faction.icon} #{influencepips}"
-		else
-			attachment['author_name'] = "#{card.setname} / #{faction.icon}"
-
-		attachment['color'] = faction.color
 
 	return attachment
 
