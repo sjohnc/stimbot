@@ -7,18 +7,15 @@
 Fuse = require 'fuse.js'
 
 FACTIONS = {
-	'adam': { "name": 'Adam', "color": '#b9b23a', "icon": "Adam" },
-	'anarch': { "name": 'Anarch', "color": '#ff4500', "icon": "Anarch" },
-	'apex': { "name": 'Apex', "color": '#9e564e', "icon": "Apex" },
-	'criminal': { "name": 'Criminal', "color": '#4169e1', "icon": "Criminal" },
-	'shaper': { "name": 'Shaper', "color": '#32cd32', "icon": "Shaper" },
-	'sunny-lebeau': { "name": 'Sunny Lebeau', "color": '#715778', "icon": "Sunny LeBeau" },
-	'neutral': { "name": 'Neutral (runner)', "color": '#808080', "icon": "Neutral" },
-	'haas-bioroid': { "name": 'Haas-Bioroid', "color": '#8a2be2', "icon": "Haas-Bioroid" },
-	'jinteki': { "name": 'Jinteki', "color": '#dc143c', "icon": "Jinteki" },
-	'nbn': { "name": 'NBN', "color": '#ff8c00', "icon": "NBN" },
-	'weyland-consortium': { "name": 'Weyland Consortium', "color": '#326b5b', "icon": "Weyland" },
-	'neutral': { "name": 'Neutral (corp)', "color": '#808080', "icon": "Neutral" }
+	'stark': { "name": 'House Stark', "color": '#b9b23a', "icon": "House Stark" },
+	'targaryen': { "name": 'House Targaryen', "color": '#ff4500', "icon": "House Targaryen" },
+	'baratheon': { "name": 'House Baratheon', "color": '#9e564e', "icon": "House Baratheon" },
+	'greyjoy': { "name": 'House Greyjoy', "color": '#4169e1', "icon": "House Greyjoy" },
+	'lannister': { "name": 'House Lannister', "color": '#32cd32', "icon": "House Lannister" },
+	'martell': { "name": 'House Martell', "color": '#715778', "icon": "House Martell" },
+	'nightswatch': { "name": 'The Night\'s Watch', "color": '#8a2be2', "icon": "The Night's Watch" },
+	'tyrell': { "name": 'House Tyrell', "color": '#dc143c', "icon": "House Tyrell" },
+	'neutral': { "name": 'Neutral', "color": '#808080', "icon": "Neutral" }
 }
 
 ABBREVIATIONS = {
@@ -53,26 +50,23 @@ formatCard = (card) ->
 	faction = FACTIONS[card.faction_code]
 
 	if faction?
-		if card.factioncost?
-			influencepips = ""
-			i = card.factioncost
-			while i--
-				influencepips += '●'
-			attachment['author_name'] = "#{card.setname} / #{faction.icon} #{influencepips}"
-		else
-			attachment['author_name'] = "#{card.setname} / #{faction.icon}"
-
-		attachment['color'] = faction.color
+    attachment['author_name'] = "#{card.setname} / #{faction.icon}"
 
 	return attachment
 
 emojifyNRDBText = (text) ->
-	text = text.replace /\[military\]/g, ":credit:"
-	text = text.replace /\[power\]/g, ":click:"
-	text = text.replace /\[intrigue\]/g, ":trash:"
+	text = text.replace /\[military\]/g, "military"
+	text = text.replace /\[power\]/g, "power"
+	text = text.replace /\[intrigue\]/g, "intrigue"
+	text = text.replace /<b>/g, "*"
+	text = text.replace /<\/b>/g, "*"
 	text = text.replace /&ndash/g, "–"
 	text = text.replace /<strong>/g, "*"
 	text = text.replace /<\/strong>/g, "*"
+	text = text.replace /<abbr>/g, "_"
+	text = text.replace /<\/abbr>/g, "_"
+	text = text.replace /<i>/g, "_"
+	text = text.replace /<\/i>/g, "_"
 
 	return text
 
@@ -88,11 +82,11 @@ module.exports = (robot) ->
 	robot.http("http://thronesdb.com/api/public/cards/")
 		.get() (err, res, body) ->
 			unsortedCards = JSON.parse body
-			robot.brain.set 'cards', unsortedCards.sort(compareCards)
+			robot.brain.set 'thronescards', unsortedCards.sort(compareCards)
 
 	robot.hear /\<([^\]]+)\>/, (res) ->
 		query = res.match[1]
-		cards = robot.brain.get('cards')
+		cards = robot.brain.get('thronescards')
 
 		query = query.toLowerCase()
 
