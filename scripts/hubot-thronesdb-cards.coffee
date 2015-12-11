@@ -7,14 +7,14 @@
 Fuse = require 'fuse.js'
 
 FACTIONS = {
-  'stark': { "name": 'House Stark', "color": '#b9b23a', "icon": ":stark:" },
-  'targaryen': { "name": 'House Targaryen', "color": '#ff4500', "icon": ":targaryen:" },
-  'baratheon': { "name": 'House Baratheon', "color": '#9e564e', "icon": ":baratheon:" },
-  'greyjoy': { "name": 'House Greyjoy', "color": '#4169e1', "icon": ":greyjoy:" },
-  'lannister': { "name": 'House Lannister', "color": '#32cd32', "icon": ":lannister:" },
-  'martell': { "name": 'House Martell', "color": '#715778', "icon": ":martell:" },
-  'nightswatch': { "name": 'The Night\'s Watch', "color": '#8a2be2', "icon": ":nightswatch:" },
-  'tyrell': { "name": 'House Tyrell', "color": '#dc143c', "icon": ":tyrell:" },
+  'stark': { "name": 'House Stark', "color": '#b9b23a', "icon": "House Stark" },
+  'targaryen': { "name": 'House Targaryen', "color": '#ff4500', "icon": "House Targaryen" },
+  'baratheon': { "name": 'House Baratheon', "color": '#9e564e', "icon": "House Baratheon" },
+  'greyjoy': { "name": 'House Greyjoy', "color": '#4169e1', "icon": "House Greyjoy" },
+  'lannister': { "name": 'House Lannister', "color": '#32cd32', "icon": "House Lannister" },
+  'martell': { "name": 'House Martell', "color": '#715778', "icon": "House Martell" },
+  'nightswatch': { "name": 'The Night\'s Watch', "color": '#8a2be2', "icon": "The Night's Watch" },
+  'tyrell': { "name": 'House Tyrell', "color": '#dc143c', "icon": "House Tyrell" },
   'neutral': { "name": 'Neutral', "color": '#808080', "icon": "Neutral" }
 }
 
