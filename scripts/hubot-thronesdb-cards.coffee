@@ -7,14 +7,14 @@
 Fuse = require 'fuse.js'
 
 FACTIONS = {
-  'stark': { "name": 'House Stark', "color": '#b9b23a', "icon": "House Stark" },
-  'targaryen': { "name": 'House Targaryen', "color": '#ff4500', "icon": "House Targaryen" },
-  'baratheon': { "name": 'House Baratheon', "color": '#9e564e', "icon": "House Baratheon" },
-  'greyjoy': { "name": 'House Greyjoy', "color": '#4169e1', "icon": "House Greyjoy" },
-  'lannister': { "name": 'House Lannister', "color": '#32cd32', "icon": "House Lannister" },
-  'martell': { "name": 'House Martell', "color": '#715778', "icon": "House Martell" },
-  'nightswatch': { "name": 'The Night\'s Watch', "color": '#8a2be2', "icon": "The Night's Watch" },
-  'tyrell': { "name": 'House Tyrell', "color": '#dc143c', "icon": "House Tyrell" },
+  'stark': { "name": 'House Stark', "color": '#b9b23a', "icon": ":stark:" },
+  'targaryen': { "name": 'House Targaryen', "color": '#ff4500', "icon": ":targaryen:" },
+  'baratheon': { "name": 'House Baratheon', "color": '#9e564e', "icon": ":baratheon:" },
+  'greyjoy': { "name": 'House Greyjoy', "color": '#4169e1', "icon": ":greyjoy:" },
+  'lannister': { "name": 'House Lannister', "color": '#32cd32', "icon": ":lannister:" },
+  'martell': { "name": 'House Martell', "color": '#715778', "icon": ":martell:" },
+  'nightswatch': { "name": 'The Night\'s Watch', "color": '#8a2be2', "icon": ":nightswatch:" },
+  'tyrell': { "name": 'House Tyrell', "color": '#dc143c', "icon": ":tyrell:" },
   'neutral': { "name": 'Neutral', "color": '#808080', "icon": "Neutral" }
 }
 
@@ -45,14 +45,16 @@ formatCard = (card) ->
     when 'plot'
       typeline += "\n#{card.income} Gold, #{card.initiative} Initiative, #{card.claim} Claim\n"
     when 'character', 'attachment', 'location', 'event'
-      typeline += " \n*Cost:* #{card.cost} Gold\n"
+      typeline += " \n*Cost:* #{card.cost}\n"
       if card.type_code == "character"
+        if card.strength?
+          typeline += "*Strength:* #{card.strength}\n"
         if card.is_military
-          typeline += "_Military_ "
+          typeline += ":military: "
         if card.is_intrigue
-          typeline += "_Intrigue_ "
+          typeline += ":intrigue: "
         if card.is_power
-          typeline += "_Power_"
+          typeline += ":power:"
 
   attachment['text'] += typeline + "\n"
   if card.text?
@@ -69,9 +71,9 @@ formatCard = (card) ->
   return attachment
 
 emojifyNRDBText = (text) ->
-  text = text.replace /\[military\]/g, "military"
-  text = text.replace /\[power\]/g, "power"
-  text = text.replace /\[intrigue\]/g, "intrigue"
+  text = text.replace /\[military\]/g, ":military:"
+  text = text.replace /\[power\]/g, ":power:"
+  text = text.replace /\[intrigue\]/g, ":intrigue:"
   text = text.replace /<b>/g, "*"
   text = text.replace /<\/b>/g, "*"
   text = text.replace /&ndash/g, "–"
@@ -81,6 +83,13 @@ emojifyNRDBText = (text) ->
   text = text.replace /<\/abbr>/g, "_"
   text = text.replace /<i>/g, "_"
   text = text.replace /<\/i>/g, "_"
+  text = text.replace /\[lannister\]/g, ":lannister:"
+  text = text.replace /\[targaryen\]/g, ":targaryen:"
+  text = text.replace /\[baratheon\]/g, ":baratheon:"
+  text = text.replace /\[greyjoy\]/g, ":greyjoy:"
+  text = text.replace /\[martell\]/g, ":martell:"
+  text = text.replace /\[nightswatch\]/g, ":nightswatch:"
+  text = text.replace /\[tyrell\]/g, ":tyrell:"
 
   return text
 
