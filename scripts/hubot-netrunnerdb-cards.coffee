@@ -1,4 +1,4 @@
-# Description:
+﻿# Description:
 #   Tools for interacting with the NetrunnerDB API.
 #
 # Commands:
@@ -132,7 +132,8 @@ ABBREVIATIONS = {
 	'cy cy': 'Cyber-Cipher',
 	'cy-cy': 'Cyber-Cipher',
 	'expose': 'Exposé',
-	'sneakysly': 'Stimhack'
+	'sneakysly': 'Stimhack',
+	'giraffe': 'Celebrity Gift'
 }
 
 formatCard = (card) ->
