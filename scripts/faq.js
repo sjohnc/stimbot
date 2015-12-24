@@ -1,8 +1,8 @@
-// Description:
+﻿// Description:
 //   Get FAQ information on a card.
 //
 // Commands:
-//   FAQ card> - Output the rules for a card.
+//   !FAQ card> - Output the rules for a card.
 //
 // Author:
 //   yeoda87
@@ -142,7 +142,7 @@ module.exports = function (robot) {
 	};
 	
 	// Define the FAQ handler function.
-	var listenForFAQ = robot.hear(/^FAQ (.*)$/i, function (res) {
+	var listenForFAQ = robot.hear(/^\!FAQ (.*)$/i, function (res) {
 		// The "query" is whatever text came after the "FAQ ".
 		var query = res.match[1];
 		
