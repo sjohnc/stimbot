@@ -145,7 +145,8 @@ ABBREVIATIONS = {
 	'ariel': 'Snare!',
 	'alexander': 'Record Reconstructor',
 	'the winning agenda': 'Astroscript Pilot Program',
-	'dlr': 'Data Leak Reversal'
+	'dlr': 'Data Leak Reversal',
+	'baby': 'Symmetrical Visage'
 }
 
 formatCard = (card) ->
@@ -228,9 +229,9 @@ emojifyNRDBText = (text) ->
 
 compareCards = (card1, card2) ->
 	if card1.title < card2.title
-		return -1
-	else if card1.title > card2.title
 		return 1
+	else if card1.title > card2.title
+		return -1
 	else
 		return 0
 
