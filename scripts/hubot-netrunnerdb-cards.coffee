@@ -133,7 +133,19 @@ ABBREVIATIONS = {
 	'cy-cy': 'Cyber-Cipher',
 	'expose': 'Exposé',
 	'sneakysly': 'Stimhack',
-	'giraffe': 'Celebrity Gift'
+	'giraffe': 'Celebrity Gift',
+	'hollis': 'Ronald Five',
+	'frank': 'Gabriel Santiago',
+	'ricky': 'Wyrm',
+	'corey': 'Data Leak Reversal',
+	'haterman': 'Troll',
+	'sjohn': 'Freelance Coding Contract',
+	'will': 'Paper Tripping',
+	'steven': 'Iain Stirling',
+	'ariel': 'Snare!',
+	'alexander': 'Record Reconstructor',
+	'the winning agenda': 'Astroscript Pilot Program',
+	'dlr': 'Data Leak Reversal'
 }
 
 formatCard = (card) ->
