@@ -196,7 +196,7 @@ formatCard = (card) ->
 		attachment['text'] += ''
 
 	if card.flavor?
-		attachment['text'] += "\n_(#{card.flavor})_"
+		attachment['text'] += "\n_#{card.flavor}_"
 
 	faction = FACTIONS[card.faction_code]
 
