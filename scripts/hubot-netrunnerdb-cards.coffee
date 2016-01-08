@@ -145,7 +145,7 @@ ABBREVIATIONS = {
 	'ariel': 'Snare!',
 	'alexander': 'Record Reconstructor',
 	'the winning agenda': 'Astroscript Pilot Program',
-	'dlr': 'Data Leak Reversal',
+	'eap': 'Explode-a-palooza'
 	'baby': 'Symmetrical Visage'
 }
 
@@ -232,9 +232,9 @@ emojifyNRDBText = (text) ->
 
 compareCards = (card1, card2) ->
 	if card1.title < card2.title
-		return 1
-	else if card1.title > card2.title
 		return -1
+	else if card1.title > card2.title
+		return 1
 	else
 		return 0
 
@@ -257,7 +257,7 @@ module.exports = (robot) ->
 			caseSensitive: false
 			includeScore: false
 			shouldSort: true
-			threshold: 0.3
+			threshold: 0.6
 			location: 0
 			distance: 100
 			maxPatternLength: 32
