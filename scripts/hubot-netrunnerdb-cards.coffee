@@ -196,7 +196,8 @@ formatCard = (card) ->
 		attachment['text'] += ''
 
 	if card.flavor?
-		attachment['text'] += "\n_#{card.flavor}_"
+		attachment['text'] += "\n"
+		attachment['text'] += emojifyNRDBText card.flavor
 
 	faction = FACTIONS[card.faction_code]
 
@@ -206,12 +207,16 @@ formatCard = (card) ->
 			i = card.factioncost
 			while i--
 				influencepips += '●'
-			attachment['author_name'] = "#{card.setname} / #{faction.icon} #{influencepips}"
+			attachment['author_name'] = "#{card.setname} - #{card.cycle_code.toUpperCase()} ##{card.number} / #{faction.icon} #{influencepips}"
 		else
-			attachment['author_name'] = "#{card.setname} / #{faction.icon}"
+			attachment['author_name'] = "#{card.setname} - #{card.cycle_code.toUpperCase()} ##{card.number} / #{faction.icon}"
 
 		attachment['color'] = faction.color
-
+	attachment['fields'] = [ {
+        "title": "ANCUR",
+        "value": "#{card.ancurLink}"
+    }
+    ]
 	return attachment
 
 emojifyNRDBText = (text) ->
