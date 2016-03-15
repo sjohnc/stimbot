@@ -1,4 +1,4 @@
-# Description:
+﻿# Description:
 #   Tools for interacting with the NetrunnerDB API.
 #
 # Commands:
@@ -143,6 +143,20 @@ ABBREVIATIONS = {
 	'plop': 'Political Operative',
 	'palana': 'Pālanā Foods',
 	'palana foods': 'Pālanā Foods'
+	'giraffe': 'Celebrity Gift',
+	'hollis': 'Ronald Five',
+	'frank': 'Gabriel Santiago',
+	'ricky': 'Wyrm',
+	'corey': 'Data Leak Reversal',
+	'haterman': 'Troll',
+	'sjohn': 'Freelance Coding Contract',
+	'will': 'Paper Tripping',
+	'steven': 'Iain Stirling',
+	'ariel': 'Snare!',
+	'alexander': 'Record Reconstructor',
+	'the winning agenda': 'Astroscript Pilot Program',
+	'eap': 'Explode-a-palooza'
+	'baby': 'Symmetrical Visage'
 }
 
 CYCLES = {
@@ -199,6 +213,10 @@ formatCard = (card) ->
 	else
 		attachment['text'] += ''
 
+	if card.flavor?
+		attachment['text'] += "\n"
+		attachment['text'] += emojifyNRDBText card.flavor
+
 	faction = FACTIONS[card.faction_code]
 
 	if faction?
@@ -215,7 +233,10 @@ formatCard = (card) ->
 
 		attachment['author_name'] = authorname
 		attachment['color'] = faction.color
-
+		attachment['fields'] = [ {
+        		"title": "ANCUR",
+        		"value": "#{card.ancurLink}"
+    		} ]
 	return attachment
 
 emojifyNRDBText = (text) ->
